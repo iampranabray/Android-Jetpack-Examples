@@ -13,8 +13,10 @@ import com.djupbyte.dependency_injection_hilt.hilt.counter_example.viewmodels.Co
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CounterUI(){
-    val myDependency = hiltViewModel<CounterViewModel>()
+fun CounterUI(
+    myDependency: CounterViewModel= hiltViewModel()
+){
+    //val myDependency = hiltViewModel<CounterViewModel>()
     Scaffold(
 
     ) {
@@ -23,7 +25,7 @@ fun CounterUI(){
             Modifier
                 .padding(padding)
         ) {
-            Greeting("${myDependency.settingsUiState.collectAsState().value}")
+            Greeting("${myDependency.settingsUiState.collectAsState(1).value}")
             Button(onClick = { myDependency.doSomething() }) {
                 Text("Click")
             }
